@@ -15,14 +15,12 @@ app.get('/', function (req, res) {
 
 app.post("/api/fileanalyse", upload.single('upfile'), function (req, res) {
   const _respBody = {
-    name: req.file.filename,
+    name: req.file.originalname,
     type: req.file.mimetype,
     size: req.file.size
   }
 
-  const finalResp = (new TextEncoder()).encode(JSON.stringify(_respBody))
-
-  res.send(finalResp)
+  res.send(_respBody)
 })
 
 
